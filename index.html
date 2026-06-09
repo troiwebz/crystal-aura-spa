@@ -66,11 +66,11 @@ h2.section-title.white{color:#fff}
 .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
 .hamburger span{display:block;width:24px;height:2px;background:#fff;transition:all 0.3s}
 #navbar.scrolled .hamburger span{background:var(--dark)}
-.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:32px}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);z-index:1002;flex-direction:column;align-items:center;justify-content:center;gap:32px}
 .mobile-menu.open{display:flex}
 .mobile-menu a{font-family:var(--font-serif);font-size:28px;color:#fff;transition:color 0.3s}
 .mobile-menu a:hover{color:var(--gold)}
-.mobile-close{position:absolute;top:24px;right:32px;font-size:32px;color:#fff;cursor:pointer;background:none;border:none}
+.mobile-close{position:absolute;top:20px;right:20px;font-size:28px;color:#fff;cursor:pointer;background:none;border:none;z-index:1001;line-height:1}
 
 /* ===== HERO SLIDER ===== */
 #hero{position:relative;width:100%;height:100vh;min-height:600px;overflow:hidden;background:#000;}
@@ -485,7 +485,7 @@ h2.section-title.white{color:#fff}
 <!-- HERO SLIDER -->
 <section id="hero">
   <!-- SHARED VIDEO BACKGROUND — sits behind all slides -->
-  <video id="heroBgVideo" autoplay muted loop playsinline style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;z-index:0;">
+  <video id="heroBgVideo" autoplay muted loop playsinline webkit-playsinline x5-playsinline style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);min-width:100%;min-height:100%;width:auto;height:auto;object-fit:cover;z-index:0;">
     <source src="massage-bg-opt.mp4" type="video/mp4">
   </video>
   <!-- Shared dark overlay -->
