@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Treatment – Crystal Aura Spa</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --dark:#0D1B14;--dark2:#112118;--gold:#C9A96E;--gold-light:#E8D5A3;
+  --cream:#F9F5EE;--cream2:#F3EDE3;--green:#2e7d32;--green-light:#43a047;
+  --text:#3E3835;--text-light:#7A736E;--font-serif:'Cormorant Garamond',serif;--font-sans:'Lato',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);background:var(--cream);color:var(--text);min-height:100vh}
+
+/* ===== NAVBAR ===== */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;transition:all 0.4s;background:var(--dark)}
+.nav-logo{font-family:var(--font-serif);font-size:22px;font-weight:500;color:#fff;letter-spacing:0.05em;text-decoration:none}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px}
+.nav-links a{font-size:12px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.8);text-decoration:none;transition:color 0.3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold)}
+.nav-right{display:flex;align-items:center;gap:16px}
+.nav-phone{font-size:13px;color:rgba(255,255,255,0.75)}
+.nav-btn{display:inline-block;padding:11px 24px;background:var(--gold);color:#fff;font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;text-decoration:none;transition:all 0.3s}
+.nav-btn:hover{background:var(--gold-light);color:var(--dark)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:2px;background:#fff}
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--font-serif);font-size:26px;color:#fff;text-decoration:none;transition:color 0.3s}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:24px;right:28px;font-size:32px;color:#fff;cursor:pointer;background:none;border:none}
+
+/* ===== OFFER BANNER ===== */
+#offer-banner{background:linear-gradient(135deg,var(--dark) 0%,var(--dark2) 50%,#1a3a2a 100%);padding:120px 40px 60px;text-align:center;position:relative;overflow:hidden}
+#offer-banner::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9A96E' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.offer-banner-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.offer-tag{display:inline-block;background:rgba(201,169,110,0.15);border:1px solid rgba(201,169,110,0.4);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;padding:7px 20px;border-radius:2px;margin-bottom:20px}
+.offer-headline{font-family:var(--font-serif);font-size:clamp(1.7rem,5vw,3.5rem);color:#fff;font-weight:300;line-height:1.2;margin-bottom:8px}
+.offer-headline span{color:var(--gold)}
+.offer-sub{font-size:14px;color:rgba(255,255,255,0.6);margin-bottom:28px}
+/* Timer */
+.offer-timer{display:inline-flex;gap:16px;background:rgba(255,255,255,0.05);border:1px solid rgba(201,169,110,0.2);border-radius:4px;padding:16px 28px;margin-bottom:8px}
+.timer-unit{text-align:center;min-width:48px}
+.timer-num{font-family:var(--font-serif);font-size:2.2rem;color:var(--gold);line-height:1;display:block}
+.timer-label{font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(255,255,255,0.4);display:block;margin-top:3px}
+.timer-sep{font-family:var(--font-serif);font-size:2rem;color:var(--gold);align-self:flex-start;padding-top:2px;opacity:0.6}
+.offer-note{font-size:12px;color:rgba(255,255,255,0.35);letter-spacing:0.1em}
+
+/* ===== PROGRESS STEPS ===== */
+.steps-bar{background:#fff;padding:18px 40px;border-bottom:1px solid #e8e0d4;position:sticky;top:68px;z-index:100}
+.steps{display:flex;align-items:center;justify-content:center;gap:0;max-width:700px;margin:0 auto}
+.step{display:flex;align-items:center;gap:10px;flex:1;justify-content:center}
+.step-num{width:30px;height:30px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:#aaa;flex-shrink:0;transition:all 0.3s}
+.step-text{font-size:12px;font-weight:700;letter-spacing:0.05em;color:#aaa;text-transform:uppercase;transition:all 0.3s}
+.step.active .step-num{background:var(--gold);border-color:var(--gold);color:#fff}
+.step.active .step-text{color:var(--dark)}
+.step.done .step-num{background:var(--green);border-color:var(--green);color:#fff}
+.step.done .step-text{color:var(--green)}
+.step-line{flex:0 0 40px;height:2px;background:#e0d8ce}
+.step.done+.step-line{background:var(--green)}
+
+/* ===== MAIN LAYOUT ===== */
+.booking-page{max-width:1200px;margin:0 auto;padding:48px 40px;display:grid;grid-template-columns:1fr 400px;gap:40px;align-items:start}
+
+/* ===== LEFT PANEL ===== */
+.booking-panel{background:#fff;border-radius:4px;box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+.panel-section{padding:36px;border-bottom:1px solid #f0ebe3}
+.panel-section:last-child{border-bottom:none}
+.panel-title{font-family:var(--font-serif);font-size:1.5rem;color:var(--dark);margin-bottom:6px}
+.panel-subtitle{font-size:13px;color:var(--text-light);margin-bottom:24px}
+.gold-bar{width:40px;height:2px;background:var(--gold);margin:10px 0 20px}
+
+/* Service Grid */
+.service-categories{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:20px}
+.scat-btn{padding:7px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;background:transparent;border:1px solid rgba(201,169,110,0.35);color:var(--text-light);cursor:pointer;transition:all 0.25s;border-radius:2px}
+.scat-btn.active{background:var(--gold);color:#fff;border-color:var(--gold)}
+.services-list{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-height:420px;overflow-y:auto;padding-right:4px}
+.services-list::-webkit-scrollbar{width:4px}
+.services-list::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+.svc-item{border:1.5px solid #e8e0d4;border-radius:4px;padding:14px 16px;cursor:pointer;transition:all 0.25s;position:relative}
+.svc-item:hover{border-color:var(--gold);background:#fdf9f3}
+.svc-item.selected{border-color:var(--gold);background:linear-gradient(135deg,#fdf8ef,#fff9f0);box-shadow:0 0 0 1px var(--gold)}
+.svc-item.selected::after{content:'✓';position:absolute;top:10px;right:12px;width:20px;height:20px;background:var(--gold);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:20px;text-align:center}
+.svc-cat-label{font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.svc-name{font-size:14px;font-weight:700;color:var(--dark);margin-bottom:4px;line-height:1.3}
+.svc-durations{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.svc-dur-btn{padding:4px 10px;font-size:11px;border:1px solid #e0d8ce;border-radius:12px;cursor:pointer;background:#fff;color:var(--text-light);transition:all 0.2s}
+.svc-dur-btn:hover,.svc-dur-btn.selected{background:var(--green);color:#fff;border-color:var(--green)}
+.svc-dur-price{font-size:11px;font-weight:700;margin-left:3px}
+
+/* Calendar */
+.calendar-wrap{user-select:none}
+.cal-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.cal-nav{width:34px;height:34px;border:1px solid #e0d8ce;background:#fff;cursor:pointer;border-radius:2px;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all 0.2s;color:var(--text)}
+.cal-nav:hover{border-color:var(--gold);color:var(--gold)}
+.cal-month{font-family:var(--font-serif);font-size:1.15rem;color:var(--dark)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+.cal-day-name{text-align:center;font-size:11px;font-weight:700;letter-spacing:0.08em;color:var(--text-light);padding:6px 0;text-transform:uppercase}
+.cal-day{text-align:center;padding:9px 4px;border-radius:4px;cursor:pointer;font-size:14px;transition:all 0.2s;color:var(--text)}
+.cal-day:hover:not(.disabled):not(.empty){background:#fdf8ef;color:var(--gold)}
+.cal-day.today{font-weight:700;color:var(--gold)}
+.cal-day.selected{background:var(--gold);color:#fff;font-weight:700}
+.cal-day.disabled{color:#ddd;cursor:default;pointer-events:none}
+.cal-day.empty{pointer-events:none}
+
+/* Time slots */
+.time-slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.time-slot{padding:9px 4px;text-align:center;border:1.5px solid #e0d8ce;border-radius:4px;cursor:pointer;font-size:13px;transition:all 0.2s;background:#fff;color:var(--text)}
+.time-slot:hover:not(.booked){border-color:var(--gold);color:var(--gold)}
+.time-slot.selected{background:var(--gold);color:#fff;border-color:var(--gold);font-weight:700}
+.time-slot.booked{background:#f5f5f5;color:#ccc;cursor:not-allowed;text-decoration:line-through;font-size:12px}
+
+/* Form */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field.full{grid-column:1/-1}
+.form-field label{font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light)}
+.form-field input,.form-field select,.form-field textarea{padding:12px 14px;border:1.5px solid #e0d8ce;border-radius:4px;font-family:var(--font-sans);font-size:14px;color:var(--text);background:#fff;transition:border-color 0.2s;outline:none}
+.form-field input:focus,.form-field select:focus,.form-field textarea:focus{border-color:var(--gold)}
+.form-field textarea{resize:vertical;min-height:80px}
+.form-field input.error,.form-field select.error{border-color:#e53935}
+.form-field .field-error{font-size:11px;color:#e53935;margin-top:2px}
+
+/* ===== RIGHT PANEL — ORDER SUMMARY ===== */
+.summary-panel{position:sticky;top:120px}
+.summary-card{background:#fff;border-radius:4px;box-shadow:0 2px 20px rgba(0,0,0,0.06);overflow:hidden}
+.summary-header{background:var(--dark);padding:24px 28px}
+.summary-header h3{font-family:var(--font-serif);font-size:1.3rem;color:#fff;font-weight:400}
+.summary-header p{font-size:12px;color:rgba(255,255,255,0.5);margin-top:4px}
+.summary-body{padding:24px 28px}
+.summary-line{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 0;border-bottom:1px solid #f5f0e8}
+.summary-line:last-child{border-bottom:none}
+.summary-line-label{font-size:13px;color:var(--text-light)}
+.summary-line-val{font-size:13px;font-weight:700;color:var(--dark);text-align:right;max-width:160px}
+.summary-empty{font-size:13px;color:#bbb;text-align:center;padding:20px 0;font-style:italic}
+.summary-divider{height:1px;background:#f0ebe3;margin:12px 0}
+.summary-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0}
+.summary-total-label{font-family:var(--font-serif);font-size:1.1rem;color:var(--dark)}
+.summary-total-val{font-family:var(--font-serif);font-size:1.6rem;color:var(--green);font-weight:500}
+.summary-savings{background:#e8f5e9;border-radius:4px;padding:10px 14px;display:flex;align-items:center;gap:8px;margin-bottom:16px}
+.summary-savings span{font-size:13px;color:var(--green);font-weight:700}
+
+/* Coupon */
+.coupon-wrap{display:flex;gap:8px;margin-bottom:20px}
+.coupon-input{flex:1;padding:11px 14px;border:1.5px solid #e0d8ce;border-radius:4px;font-size:13px;font-family:var(--font-sans);outline:none;transition:border-color 0.2s;text-transform:uppercase;letter-spacing:0.1em}
+.coupon-input:focus{border-color:var(--gold)}
+.coupon-btn{padding:11px 18px;background:var(--dark);color:#fff;font-size:12px;font-weight:700;letter-spacing:0.08em;border:none;cursor:pointer;border-radius:4px;transition:background 0.2s;white-space:nowrap}
+.coupon-btn:hover{background:var(--gold)}
+.coupon-msg{font-size:12px;margin-top:-14px;margin-bottom:14px;padding:0}
+.coupon-msg.success{color:var(--green)}
+.coupon-msg.error{color:#e53935}
+
+/* Payment */
+.payment-section{padding:0 28px 28px}
+.payment-title{font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--text-light);margin-bottom:14px}
+.payment-tabs{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:20px}
+.pay-tab{border:2px solid #e0d8ce;border-radius:4px;padding:14px;text-align:center;cursor:pointer;transition:all 0.25s;background:#fff}
+.pay-tab:hover{border-color:var(--gold)}
+.pay-tab.active{border-color:var(--gold);background:#fdf8ef}
+.pay-tab-icon{font-size:24px;margin-bottom:6px;display:block}
+.pay-tab-name{font-size:12px;font-weight:700;color:var(--dark)}
+.pay-tab-sub{font-size:11px;color:var(--text-light);margin-top:2px}
+
+/* QR Code area */
+.qr-area{display:none;text-align:center;padding:16px 0}
+.qr-area.active{display:block}
+.qr-frame{display:inline-block;border:3px solid var(--dark);border-radius:6px;padding:12px;background:#fff;margin-bottom:12px}
+.qr-code{width:160px;height:160px;display:block}
+.qr-amount{font-family:var(--font-serif);font-size:1.5rem;color:var(--dark);font-weight:500;margin-bottom:4px}
+.qr-instruct{font-size:12px;color:var(--text-light);line-height:1.6}
+.qr-instruct strong{color:var(--dark)}
+.kbank-details{background:#1a5c3a;border-radius:4px;padding:16px;margin-bottom:12px;text-align:left}
+.kbank-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.kbank-logo{width:36px;height:36px;background:#fff;border-radius:4px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;color:#1a5c3a}
+.kbank-name{font-size:13px;font-weight:700;color:#fff}
+.kbank-sub{font-size:11px;color:rgba(255,255,255,0.6)}
+.kbank-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.kbank-row-label{font-size:11px;color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:0.08em}
+.kbank-row-val{font-size:14px;font-weight:700;color:#fff}
+.promptpay-details{background:#003087;border-radius:4px;padding:16px;margin-bottom:12px}
+.pp-logo-row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.pp-logo{font-size:22px}
+.pp-name{font-size:14px;font-weight:700;color:#fff}
+.pp-sub{font-size:11px;color:rgba(255,255,255,0.6)}
+.pp-number{font-family:var(--font-serif);font-size:1.8rem;color:#fff;text-align:center;letter-spacing:0.08em;margin:12px 0}
+.pp-name-display{font-size:13px;color:rgba(255,255,255,0.7);text-align:center}
+
+/* Book button */
+.book-btn{width:100%;padding:16px;background:linear-gradient(135deg,var(--green),var(--green-light));color:#fff;font-family:var(--font-sans);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;border:none;cursor:pointer;border-radius:4px;transition:all 0.3s;box-shadow:0 4px 16px rgba(46,125,50,0.35)}
+.book-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(46,125,50,0.45)}
+.book-btn:disabled{background:#ccc;cursor:not-allowed;transform:none;box-shadow:none}
+.book-note{font-size:11px;color:var(--text-light);text-align:center;margin-top:10px;line-height:1.6}
+
+/* ===== SUCCESS MODAL ===== */
+#successModal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;align-items:center;justify-content:center}
+#successModal.open{display:flex}
+.success-card{background:#fff;border-radius:6px;padding:48px 40px;max-width:480px;width:90%;text-align:center}
+.success-icon{width:72px;height:72px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 24px;font-size:32px;color:#fff}
+.success-title{font-family:var(--font-serif);font-size:2rem;color:var(--dark);margin-bottom:12px}
+.success-sub{font-size:14px;color:var(--text-light);line-height:1.7;margin-bottom:28px}
+.success-ref{font-size:13px;font-weight:700;color:var(--gold);letter-spacing:0.1em;margin-bottom:28px;background:var(--cream);padding:10px 20px;border-radius:4px;display:inline-block}
+.success-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.success-btn{padding:12px 24px;font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;cursor:pointer;border-radius:4px;text-decoration:none;transition:all 0.3s}
+.success-btn-primary{background:var(--gold);color:#fff;border:none}
+.success-btn-secondary{background:transparent;color:var(--dark);border:2px solid #e0d8ce}
+
+/* ===== FOOTER ===== */
+footer{background:var(--dark);color:rgba(255,255,255,0.6);text-align:center;padding:30px 20px;font-size:13px;margin-top:60px}
+footer a{color:var(--gold);text-decoration:none}
+
+/* ===== UTILS ===== */
+.section-label{display:block;font-size:11px;font-weight:700;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);margin-bottom:8px}
+.badge-new{display:inline-block;background:var(--green);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:2px;margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.badge-popular{display:inline-block;background:var(--gold);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:2px;margin-left:6px;letter-spacing:0.05em;vertical-align:middle}
+.offer-active-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(46,125,50,0.1);border:1px solid rgba(46,125,50,0.25);color:var(--green);font-size:11px;font-weight:700;padding:5px 12px;border-radius:20px;margin-bottom:20px}
+.offer-active-dot{width:7px;height:7px;background:var(--green);border-radius:50%;animation:pulse-dot 1.5s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .booking-page{grid-template-columns:1fr;padding:40px 24px}
+  .summary-panel{position:static}
+}
+@media(max-width:768px){
+  #navbar{padding:14px 18px}
+  .nav-links{display:none}
+  .nav-phone{display:none}
+  .hamburger{display:flex}
+  .nav-logo{font-size:17px;white-space:nowrap}
+  #offer-banner{padding:100px 20px 44px}
+  .offer-headline{font-size:clamp(1.5rem,7vw,2.5rem)}
+  .offer-headline span{display:inline}
+  .offer-timer{gap:10px;padding:14px 18px;flex-wrap:wrap;justify-content:center}
+  .timer-num{font-size:1.8rem}
+  .steps-bar{top:60px}
+  .steps-bar{padding:14px 16px}
+  .step-text{display:none}
+  .step-line{flex:0 0 20px}
+  .booking-page{padding:28px 16px;gap:28px}
+  .panel-section{padding:24px}
+  .services-list{grid-template-columns:1fr}
+  .time-slots{grid-template-columns:repeat(3,1fr)}
+  .form-grid{grid-template-columns:1fr}
+  .form-field.full{grid-column:1}
+  .summary-body{padding:20px}
+  .payment-section{padding:0 20px 20px}
+  .payment-tabs{grid-template-columns:1fr 1fr}
+  .qr-code{width:130px;height:130px}
+}
+@media(max-width:400px){
+  .time-slots{grid-template-columns:repeat(2,1fr)}
+  .offer-timer{gap:8px;padding:12px 10px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="crystal-aura-spa-v2.html" class="nav-logo">Crystal <span>Aura</span> Spa</a>
+  <div class="nav-links">
+    <a href="crystal-aura-spa-v2.html#services">Services</a>
+    <a href="crystal-aura-spa-v2.html#offers">Offers</a>
+    <a href="crystal-aura-spa-v2.html#packages">Packages</a>
+    <a href="crystal-aura-spa-v2.html#pricing">Pricing</a>
+    <a href="crystal-aura-spa-v2.html#gallery">Gallery</a>
+    <a href="crystal-aura-spa-v2.html#contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <span class="nav-phone">095 993 2861</span>
+    <a href="booking.html" class="nav-btn active">Book Now</a>
+  </div>
+  <div class="hamburger" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="document.getElementById('mobileMenu').classList.remove('open')">&times;</button>
+  <a href="crystal-aura-spa-v2.html#services" onclick="document.getElementById('mobileMenu').classList.remove('open')">Services</a>
+  <a href="crystal-aura-spa-v2.html#offers" onclick="document.getElementById('mobileMenu').classList.remove('open')">Offers</a>
+  <a href="crystal-aura-spa-v2.html#pricing" onclick="document.getElementById('mobileMenu').classList.remove('open')">Pricing</a>
+  <a href="crystal-aura-spa-v2.html#gallery" onclick="document.getElementById('mobileMenu').classList.remove('open')">Gallery</a>
+  <a href="crystal-aura-spa-v2.html#contact" onclick="document.getElementById('mobileMenu').classList.remove('open')">Contact</a>
+</div>
+
+<!-- OFFER BANNER -->
+<section id="offer-banner">
+  <div class="offer-banner-inner">
+    <div class="offer-tag">✦ Online Booking Special</div>
+    <h1 class="offer-headline">Book Today &amp; Get <span>10% OFF</span></h1>
+    <p class="offer-sub">Exclusive discount for online bookings made today only. Offer expires at midnight.</p>
+    <div class="offer-timer">
+      <div class="timer-unit"><span class="timer-num" id="t-hrs">00</span><span class="timer-label">Hours</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-unit"><span class="timer-num" id="t-min">00</span><span class="timer-label">Mins</span></div>
+      <span class="timer-sep">:</span>
+      <div class="timer-unit"><span class="timer-num" id="t-sec">00</span><span class="timer-label">Secs</span></div>
+    </div>
+    <p class="offer-note">Auto-applied at checkout · No code needed today</p>
+  </div>
+</section>
+
+<!-- STEPS BAR -->
+<div class="steps-bar">
+  <div class="steps">
+    <div class="step active" id="step1">
+      <div class="step-num">1</div>
+      <span class="step-text">Service</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step2">
+      <div class="step-num">2</div>
+      <span class="step-text">Date &amp; Time</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step3">
+      <div class="step-num">3</div>
+      <span class="step-text">Your Details</span>
+    </div>
+    <div class="step-line"></div>
+    <div class="step" id="step4">
+      <div class="step-num">4</div>
+      <span class="step-text">Payment</span>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN -->
+<div class="booking-page">
+
+  <!-- LEFT: BOOKING FORM -->
+  <div class="booking-panel">
+
+    <!-- STEP 1: SERVICE -->
+    <div class="panel-section" id="sec-service">
+      <span class="section-label">Step 1</span>
+      <h2 class="panel-title">Choose Your Treatment</h2>
+      <div class="gold-bar"></div>
+
+      <!-- Auto 10% offer tag -->
+      <div class="offer-active-tag"><span class="offer-active-dot"></span> 10% OFF applied automatically for today's booking</div>
+
+      <!-- Category filter -->
+      <div class="service-categories" id="catBtns">
+        <button class="scat-btn active" data-cat="all">All</button>
+        <button class="scat-btn" data-cat="traditional">Traditional</button>
+        <button class="scat-btn" data-cat="foot">Foot</button>
+        <button class="scat-btn" data-cat="oil">Oil & Aroma</button>
+        <button class="scat-btn" data-cat="therapeutic">Therapeutic</button>
+        <button class="scat-btn" data-cat="facial">Facial &amp; Body</button>
+        <button class="scat-btn" data-cat="package">Packages</button>
+      </div>
+
+      <!-- Services -->
+      <div class="services-list" id="servicesList"></div>
+    </div>
+
+    <!-- STEP 2: DATE & TIME -->
+    <div class="panel-section" id="sec-datetime">
+      <span class="section-label">Step 2</span>
+      <h2 class="panel-title">Select Date &amp; Time</h2>
+      <div class="gold-bar"></div>
+
+      <!-- Calendar -->
+      <div class="calendar-wrap" style="margin-bottom:28px">
+        <div class="cal-header">
+          <button class="cal-nav" id="calPrev">&#8592;</button>
+          <span class="cal-month" id="calMonthLabel"></span>
+          <button class="cal-nav" id="calNext">&#8594;</button>
+        </div>
+        <div class="cal-grid" id="calGrid"></div>
+      </div>
+
+      <!-- Time slots -->
+      <h3 style="font-family:var(--font-serif);font-size:1.05rem;color:var(--dark);margin-bottom:14px">Available Times <span id="timeSlotDate" style="font-size:14px;color:var(--text-light);font-weight:300"></span></h3>
+      <div class="time-slots" id="timeSlots"></div>
+      <p style="font-size:11px;color:#bbb;margin-top:10px">* Crossed-out times are already booked. Open 09:00–23:00 daily.</p>
+
+      <!-- Guests -->
+      <div style="margin-top:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+        <div>
+          <label style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Number of Guests</label>
+          <div style="display:flex;align-items:center;gap:12px">
+            <button onclick="changeGuests(-1)" style="width:32px;height:32px;border:1.5px solid #e0d8ce;background:#fff;cursor:pointer;border-radius:4px;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e0d8ce'">−</button>
+            <span id="guestCount" style="font-family:var(--font-serif);font-size:1.4rem;color:var(--dark);min-width:24px;text-align:center">1</span>
+            <button onclick="changeGuests(1)" style="width:32px;height:32px;border:1.5px solid #e0d8ce;background:#fff;cursor:pointer;border-radius:4px;font-size:18px;display:flex;align-items:center;justify-content:center;transition:all 0.2s" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='#e0d8ce'">+</button>
+            <span style="font-size:13px;color:var(--text-light)">person(s)</span>
+          </div>
+        </div>
+        <div style="flex:1;min-width:180px">
+          <label style="font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-light);display:block;margin-bottom:8px">Therapist Gender Preference</label>
+          <select id="therapistPref" style="padding:10px 14px;border:1.5px solid #e0d8ce;border-radius:4px;font-family:var(--font-sans);font-size:13px;color:var(--text);background:#fff;outline:none;width:100%;cursor:pointer">
+            <option value="any">No preference</option>
+            <option value="female">Female therapist</option>
+            <option value="male">Male therapist</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 3: DETAILS -->
+    <div class="panel-section" id="sec-details">
+      <span class="section-label">Step 3</span>
+      <h2 class="panel-title">Your Details</h2>
+      <div class="gold-bar"></div>
+      <div class="form-grid">
+        <div class="form-field">
+          <label>First Name *</label>
+          <input type="text" id="f-fname" placeholder="Firstname">
+          <span class="field-error" id="err-fname"></span>
+        </div>
+        <div class="form-field">
+          <label>Last Name *</label>
+          <input type="text" id="f-lname" placeholder="Lastname">
+          <span class="field-error" id="err-lname"></span>
+        </div>
+        <div class="form-field">
+          <label>Phone / WhatsApp *</label>
+          <input type="tel" id="f-phone" placeholder="+66 or local number">
+          <span class="field-error" id="err-phone"></span>
+        </div>
+        <div class="form-field">
+          <label>Email Address</label>
+          <input type="email" id="f-email" placeholder="you@email.com">
+        </div>
+        <div class="form-field">
+          <label>Nationality</label>
+          <select id="f-nationality">
+            <option value="">Select country...</option>
+            <option>Thai</option>
+            <option>Chinese</option>
+            <option>Japanese</option>
+            <option>Korean</option>
+            <option>American</option>
+            <option>British</option>
+            <option>Australian</option>
+            <option>German</option>
+            <option>French</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>How did you hear about us?</label>
+          <select id="f-source">
+            <option value="">Select...</option>
+            <option>Google Maps</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Friend / Referral</option>
+            <option>Hotel Recommendation</option>
+            <option>Walk-in</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field full">
+          <label>Health Notes / Special Requests</label>
+          <textarea id="f-notes" placeholder="Any injuries, allergies, pressure preferences, or special requests..."></textarea>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end left panel -->
+
+  <!-- RIGHT: ORDER SUMMARY -->
+  <div class="summary-panel">
+    <div class="summary-card">
+      <div class="summary-header">
+        <h3>Your Booking Summary</h3>
+        <p>Review before payment</p>
+      </div>
+      <div class="summary-body">
+        <!-- Dynamic lines -->
+        <div id="summaryContent">
+          <p class="summary-empty">Select a service to get started</p>
+        </div>
+
+        <div class="summary-divider"></div>
+
+        <!-- Coupon -->
+        <p style="font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--text-light);margin-bottom:10px">Coupon Code</p>
+        <div class="coupon-wrap">
+          <input class="coupon-input" type="text" id="couponInput" placeholder="e.g. WELCOME20">
+          <button class="coupon-btn" onclick="applyCoupon()">Apply</button>
+        </div>
+        <p class="coupon-msg" id="couponMsg"></p>
+
+        <!-- Totals -->
+        <div id="totalLines"></div>
+
+        <div class="summary-total">
+          <span class="summary-total-label">Total to Pay</span>
+          <span class="summary-total-val" id="totalAmount">—</span>
+        </div>
+
+        <div id="savingsBox" style="display:none" class="summary-savings">
+          <span>🎉 You save: <span id="savingsAmt"></span> THB today!</span>
+        </div>
+      </div>
+
+      <!-- Payment -->
+      <div class="payment-section">
+        <p class="payment-title">Payment Method</p>
+        <div class="payment-tabs">
+          <div class="pay-tab active" onclick="selectPayment('promptpay',this)">
+            <span class="pay-tab-icon">📱</span>
+            <div class="pay-tab-name">PromptPay</div>
+            <div class="pay-tab-sub">Instant transfer</div>
+          </div>
+          <div class="pay-tab" onclick="selectPayment('kbank',this)">
+            <span class="pay-tab-icon" style="font-size:20px">🏦</span>
+            <div class="pay-tab-name">KBank</div>
+            <div class="pay-tab-sub">Kasikorn Bank</div>
+          </div>
+        </div>
+
+        <!-- PromptPay -->
+        <div class="qr-area active" id="qr-promptpay">
+          <div class="promptpay-details">
+            <div class="pp-logo-row">
+              <span class="pp-logo">💳</span>
+              <div>
+                <div class="pp-name">PromptPay</div>
+                <div class="pp-sub">Thailand's instant payment</div>
+              </div>
+            </div>
+            <div class="pp-number">095-993-2861</div>
+            <div class="pp-name-display">Crystal Aura Spa Co., Ltd.</div>
+          </div>
+          <div class="qr-frame">
+            <!-- SVG QR Placeholder -->
+            <svg class="qr-code" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="160" fill="#fff"/>
+              <!-- TL finder -->
+              <rect x="10" y="10" width="50" height="50" rx="4" fill="#000"/><rect x="18" y="18" width="34" height="34" rx="2" fill="#fff"/><rect x="24" y="24" width="22" height="22" rx="1" fill="#000"/>
+              <!-- TR finder -->
+              <rect x="100" y="10" width="50" height="50" rx="4" fill="#000"/><rect x="108" y="18" width="34" height="34" rx="2" fill="#fff"/><rect x="114" y="24" width="22" height="22" rx="1" fill="#000"/>
+              <!-- BL finder -->
+              <rect x="10" y="100" width="50" height="50" rx="4" fill="#000"/><rect x="18" y="108" width="34" height="34" rx="2" fill="#fff"/><rect x="24" y="114" width="22" height="22" rx="1" fill="#000"/>
+              <!-- Data modules (decorative) -->
+              <rect x="70" y="10" width="6" height="6" fill="#000"/><rect x="78" y="10" width="6" height="6" fill="#000"/>
+              <rect x="70" y="18" width="6" height="6" fill="#000"/><rect x="86" y="18" width="6" height="6" fill="#000"/>
+              <rect x="78" y="26" width="6" height="6" fill="#000"/><rect x="86" y="26" width="6" height="6" fill="#000"/>
+              <rect x="70" y="34" width="6" height="6" fill="#000"/><rect x="86" y="34" width="6" height="6" fill="#000"/>
+              <rect x="78" y="42" width="6" height="6" fill="#000"/><rect x="70" y="50" width="6" height="6" fill="#000"/>
+              <rect x="86" y="50" width="6" height="6" fill="#000"/><rect x="10" y="70" width="6" height="6" fill="#000"/>
+              <rect x="18" y="70" width="6" height="6" fill="#000"/><rect x="34" y="70" width="6" height="6" fill="#000"/>
+              <rect x="42" y="70" width="6" height="6" fill="#000"/><rect x="50" y="70" width="6" height="6" fill="#000"/>
+              <rect x="58" y="70" width="6" height="6" fill="#000"/><rect x="70" y="70" width="6" height="6" fill="#000"/>
+              <rect x="86" y="70" width="6" height="6" fill="#000"/><rect x="94" y="70" width="6" height="6" fill="#000"/>
+              <rect x="110" y="70" width="6" height="6" fill="#000"/><rect x="126" y="70" width="6" height="6" fill="#000"/>
+              <rect x="134" y="70" width="6" height="6" fill="#000"/><rect x="142" y="70" width="6" height="6" fill="#000"/>
+              <rect x="10" y="78" width="6" height="6" fill="#000"/><rect x="26" y="78" width="6" height="6" fill="#000"/>
+              <rect x="50" y="78" width="6" height="6" fill="#000"/><rect x="66" y="78" width="6" height="6" fill="#000"/>
+              <rect x="78" y="78" width="6" height="6" fill="#000"/><rect x="90" y="78" width="6" height="6" fill="#000"/>
+              <rect x="106" y="78" width="6" height="6" fill="#000"/><rect x="118" y="78" width="6" height="6" fill="#000"/>
+              <rect x="130" y="78" width="6" height="6" fill="#000"/><rect x="18" y="86" width="6" height="6" fill="#000"/>
+              <rect x="42" y="86" width="6" height="6" fill="#000"/><rect x="58" y="86" width="6" height="6" fill="#000"/>
+              <rect x="74" y="86" width="6" height="6" fill="#000"/><rect x="86" y="86" width="6" height="6" fill="#000"/>
+              <rect x="102" y="86" width="6" height="6" fill="#000"/><rect x="114" y="86" width="6" height="6" fill="#000"/>
+              <rect x="126" y="86" width="6" height="6" fill="#000"/><rect x="142" y="86" width="6" height="6" fill="#000"/>
+              <rect x="10" y="94" width="6" height="6" fill="#000"/><rect x="34" y="94" width="6" height="6" fill="#000"/>
+              <rect x="50" y="94" width="6" height="6" fill="#000"/><rect x="70" y="94" width="6" height="6" fill="#000"/>
+              <rect x="82" y="94" width="6" height="6" fill="#000"/><rect x="98" y="94" width="6" height="6" fill="#000"/>
+              <rect x="110" y="94" width="6" height="6" fill="#000"/><rect x="130" y="94" width="6" height="6" fill="#000"/>
+              <rect x="142" y="94" width="6" height="6" fill="#000"/><rect x="18" y="102" width="6" height="6" fill="#000"/>
+              <rect x="26" y="102" width="6" height="6" fill="#000"/><rect x="42" y="102" width="6" height="6" fill="#000"/>
+              <rect x="66" y="102" width="6" height="6" fill="#000"/><rect x="78" y="102" width="6" height="6" fill="#000"/>
+              <rect x="94" y="102" width="6" height="6" fill="#000"/><rect x="118" y="102" width="6" height="6" fill="#000"/>
+              <rect x="134" y="102" width="6" height="6" fill="#000"/><rect x="70" y="110" width="6" height="6" fill="#000"/>
+              <rect x="82" y="110" width="6" height="6" fill="#000"/><rect x="98" y="110" width="6" height="6" fill="#000"/>
+              <rect x="110" y="110" width="6" height="6" fill="#000"/><rect x="126" y="110" width="6" height="6" fill="#000"/>
+              <rect x="142" y="110" width="6" height="6" fill="#000"/><rect x="70" y="118" width="6" height="6" fill="#000"/>
+              <rect x="86" y="118" width="6" height="6" fill="#000"/><rect x="102" y="118" width="6" height="6" fill="#000"/>
+              <rect x="118" y="118" width="6" height="6" fill="#000"/><rect x="130" y="118" width="6" height="6" fill="#000"/>
+              <rect x="78" y="126" width="6" height="6" fill="#000"/><rect x="94" y="126" width="6" height="6" fill="#000"/>
+              <rect x="110" y="126" width="6" height="6" fill="#000"/><rect x="126" y="126" width="6" height="6" fill="#000"/>
+              <rect x="142" y="126" width="6" height="6" fill="#000"/><rect x="70" y="134" width="6" height="6" fill="#000"/>
+              <rect x="86" y="134" width="6" height="6" fill="#000"/><rect x="102" y="134" width="6" height="6" fill="#000"/>
+              <rect x="118" y="134" width="6" height="6" fill="#000"/><rect x="78" y="142" width="6" height="6" fill="#000"/>
+              <rect x="94" y="142" width="6" height="6" fill="#000"/><rect x="110" y="142" width="6" height="6" fill="#000"/>
+              <rect x="134" y="142" width="6" height="6" fill="#000"/>
+              <!-- PromptPay center logo area -->
+              <rect x="68" y="68" width="24" height="24" rx="3" fill="#003087"/>
+              <text x="80" y="83" text-anchor="middle" fill="#fff" font-size="9" font-weight="bold" font-family="sans-serif">PP</text>
+            </svg>
+          </div>
+          <div class="qr-amount" id="pp-amount">฿ —</div>
+          <div class="qr-instruct">
+            Open your banking app → PromptPay / QR Scan<br>
+            <strong>Account: 095-993-2861</strong><br>
+            Crystal Aura Spa Co., Ltd.<br>
+            <span style="color:var(--green);font-weight:700">Screenshot &amp; send to WhatsApp for confirmation</span>
+          </div>
+        </div>
+
+        <!-- KBank -->
+        <div class="qr-area" id="qr-kbank">
+          <div class="kbank-details">
+            <div class="kbank-logo-row">
+              <div class="kbank-logo">K</div>
+              <div>
+                <div class="kbank-name">Kasikorn Bank (KBank)</div>
+                <div class="kbank-sub">Direct Transfer</div>
+              </div>
+            </div>
+            <div class="kbank-row"><span class="kbank-row-label">Account Name</span><span class="kbank-row-val">Crystal Aura Spa</span></div>
+            <div class="kbank-row"><span class="kbank-row-label">Account No.</span><span class="kbank-row-val">xxx-x-xxxxx-x</span></div>
+            <div class="kbank-row"><span class="kbank-row-label">Bank Branch</span><span class="kbank-row-val">Nimman, Chiang Mai</span></div>
+            <div class="kbank-row" style="margin-bottom:0"><span class="kbank-row-label">Amount</span><span class="kbank-row-val" id="kbank-amount" style="color:#7de87a">฿ —</span></div>
+          </div>
+          <div class="qr-frame">
+            <svg class="qr-code" viewBox="0 0 160 160" xmlns="http://www.w3.org/2000/svg">
+              <rect width="160" height="160" fill="#fff"/>
+              <rect x="10" y="10" width="50" height="50" rx="4" fill="#000"/><rect x="18" y="18" width="34" height="34" rx="2" fill="#fff"/><rect x="24" y="24" width="22" height="22" rx="1" fill="#1a5c3a"/>
+              <rect x="100" y="10" width="50" height="50" rx="4" fill="#000"/><rect x="108" y="18" width="34" height="34" rx="2" fill="#fff"/><rect x="114" y="24" width="22" height="22" rx="1" fill="#1a5c3a"/>
+              <rect x="10" y="100" width="50" height="50" rx="4" fill="#000"/><rect x="18" y="108" width="34" height="34" rx="2" fill="#fff"/><rect x="24" y="114" width="22" height="22" rx="1" fill="#1a5c3a"/>
+              <rect x="70" y="10" width="6" height="6" fill="#1a5c3a"/><rect x="82" y="10" width="6" height="6" fill="#000"/>
+              <rect x="70" y="22" width="6" height="6" fill="#000"/><rect x="82" y="22" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="70" y="34" width="6" height="6" fill="#1a5c3a"/><rect x="82" y="34" width="6" height="6" fill="#000"/>
+              <rect x="70" y="46" width="6" height="6" fill="#000"/><rect x="82" y="46" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="10" y="70" width="6" height="6" fill="#1a5c3a"/><rect x="22" y="70" width="6" height="6" fill="#000"/>
+              <rect x="34" y="70" width="6" height="6" fill="#1a5c3a"/><rect x="46" y="70" width="6" height="6" fill="#000"/>
+              <rect x="70" y="70" width="6" height="6" fill="#1a5c3a"/><rect x="82" y="70" width="6" height="6" fill="#000"/>
+              <rect x="94" y="70" width="6" height="6" fill="#1a5c3a"/><rect x="106" y="70" width="6" height="6" fill="#000"/>
+              <rect x="118" y="70" width="6" height="6" fill="#1a5c3a"/><rect x="130" y="70" width="6" height="6" fill="#000"/>
+              <rect x="142" y="70" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="10" y="82" width="6" height="6" fill="#000"/><rect x="22" y="82" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="46" y="82" width="6" height="6" fill="#000"/><rect x="58" y="82" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="70" y="82" width="6" height="6" fill="#000"/><rect x="94" y="82" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="106" y="82" width="6" height="6" fill="#000"/><rect x="118" y="82" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="142" y="82" width="6" height="6" fill="#000"/>
+              <rect x="58" y="94" width="6" height="6" fill="#1a5c3a"/><rect x="70" y="94" width="6" height="6" fill="#000"/>
+              <rect x="82" y="94" width="6" height="6" fill="#1a5c3a"/><rect x="106" y="94" width="6" height="6" fill="#000"/>
+              <rect x="130" y="94" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="70" y="106" width="6" height="6" fill="#000"/><rect x="82" y="106" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="94" y="106" width="6" height="6" fill="#000"/><rect x="118" y="106" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="130" y="106" width="6" height="6" fill="#000"/><rect x="142" y="106" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="70" y="118" width="6" height="6" fill="#1a5c3a"/><rect x="94" y="118" width="6" height="6" fill="#000"/>
+              <rect x="106" y="118" width="6" height="6" fill="#1a5c3a"/><rect x="130" y="118" width="6" height="6" fill="#000"/>
+              <rect x="70" y="130" width="6" height="6" fill="#000"/><rect x="82" y="130" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="106" y="130" width="6" height="6" fill="#000"/><rect x="118" y="130" width="6" height="6" fill="#1a5c3a"/>
+              <rect x="142" y="130" width="6" height="6" fill="#000"/>
+              <rect x="70" y="142" width="6" height="6" fill="#1a5c3a"/><rect x="94" y="142" width="6" height="6" fill="#000"/>
+              <rect x="118" y="142" width="6" height="6" fill="#1a5c3a"/><rect x="130" y="142" width="6" height="6" fill="#000"/>
+              <!-- KBank K center -->
+              <rect x="68" y="68" width="24" height="24" rx="3" fill="#1a5c3a"/>
+              <text x="80" y="83" text-anchor="middle" fill="#fff" font-size="11" font-weight="900" font-family="sans-serif">K</text>
+            </svg>
+          </div>
+          <div class="qr-amount" id="kbank-qr-amount">฿ —</div>
+          <div class="qr-instruct">
+            Open KBank app → Scan QR or transfer<br>
+            <strong>After transfer: send screenshot to WhatsApp</strong><br>
+            <a href="https://wa.me/66959932861" style="color:var(--green);font-weight:700;text-decoration:none" target="_blank">+66 95 993 2861</a>
+          </div>
+        </div>
+
+        <!-- Book Button -->
+        <button class="book-btn" id="bookBtn" onclick="submitBooking()" style="margin-top:20px">
+          Confirm &amp; Complete Booking
+        </button>
+        <p class="book-note">
+          By booking you agree to our cancellation policy.<br>
+          Free cancellation up to 24 hours before your appointment.<br>
+          <strong>WhatsApp confirmation will be sent within 15 minutes.</strong>
+        </p>
+      </div>
+    </div><!-- end summary card -->
+  </div><!-- end right -->
+
+</div><!-- end booking page -->
+
+<!-- SUCCESS MODAL -->
+<div id="successModal">
+  <div class="success-card">
+    <div class="success-icon">✓</div>
+    <h2 class="success-title">Booking Confirmed!</h2>
+    <p class="success-sub">Thank you for booking with Crystal Aura Spa. We'll send a WhatsApp confirmation within 15 minutes. See you soon!</p>
+    <div class="success-ref" id="successRef">REF: #CAS-000000</div>
+    <div class="success-btns">
+      <a href="https://wa.me/66959932861" class="success-btn success-btn-primary" target="_blank">Chat on WhatsApp</a>
+      <a href="crystal-aura-spa-v2.html" class="success-btn success-btn-secondary">Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p>Crystal Aura Spa · 29 Nimmanhemin Soi 7, Chiang Mai 50200 · <a href="tel:+66959932861">+66 95 993 2861</a> · Open Daily 09:00–23:30</p>
+  <p style="margin-top:8px;font-size:11px;color:rgba(255,255,255,0.3)">© 2025 Crystal Aura Spa. All rights reserved.</p>
+</footer>
+
+<script>
+// ===== SERVICES DATA =====
+const SERVICES = [
+  // Traditional
+  {id:'tt1',cat:'traditional',name:'Thai Traditional Massage',label:'TRADITIONAL',prices:{60:400,90:590,120:750},popular:true},
+  {id:'tt2',cat:'traditional',name:'Neck Back Shoulder',label:'TRADITIONAL',prices:{60:650,90:950,120:1200}},
+  {id:'tt3',cat:'traditional',name:'Thai Balm Massage',label:'TRADITIONAL',prices:{60:650,90:950}},
+  {id:'tt4',cat:'traditional',name:'Thai Herbal Ball Compress',label:'TRADITIONAL',prices:{90:890,120:1300}},
+  {id:'tt5',cat:'traditional',name:'4-Hands Thai Massage',label:'TRADITIONAL',prices:{60:1200,90:1750}},
+  // Foot
+  {id:'ft1',cat:'foot',name:'Foot Reflexology',label:'FOOT',prices:{60:400,90:590}},
+  {id:'ft2',cat:'foot',name:'Foot & Leg Massage',label:'FOOT',prices:{60:500,90:750}},
+  {id:'ft3',cat:'foot',name:'Hot Stone Foot Massage',label:'FOOT',prices:{60:650,90:950}},
+  // Oil & Aroma
+  {id:'oi1',cat:'oil',name:'Aromatherapy Oil Massage',label:'OIL & AROMA',prices:{60:790,90:1100,120:1400}},
+  {id:'oi2',cat:'oil',name:'Swedish Massage',label:'OIL & AROMA',prices:{60:850,90:1200,120:1550}},
+  {id:'oi3',cat:'oil',name:'Deep Relaxation Massage',label:'OIL & AROMA',prices:{60:900,90:1250,120:1600}},
+  // Therapeutic
+  {id:'th1',cat:'therapeutic',name:'Hot Stone Massage',label:'THERAPEUTIC',prices:{90:1500,120:1900}},
+  {id:'th2',cat:'therapeutic',name:'Deep Tissue Massage',label:'THERAPEUTIC',prices:{60:990,90:1390,120:1800}},
+  {id:'th3',cat:'therapeutic',name:'Sports Massage',label:'THERAPEUTIC',prices:{60:990,90:1390,120:1800}},
+  // Facial & Body
+  {id:'fc1',cat:'facial',name:'Anti Aging Facial',label:'FACIAL',prices:{60:790,90:1100,120:1400}},
+  {id:'fc2',cat:'facial',name:'Brightening Facial',label:'FACIAL',prices:{60:850,90:1200,120:1550}},
+  {id:'fc3',cat:'facial',name:'Hydrating Facial',label:'FACIAL',prices:{60:750,90:1050}},
+  {id:'bs1',cat:'facial',name:'Thai Herbal Scrub',label:'BODY SCRUB',prices:{60:900,90:1250}},
+  {id:'bs2',cat:'facial',name:'Coffee Coconut Scrub',label:'BODY SCRUB',prices:{60:950,90:1300}},
+  {id:'bs3',cat:'facial',name:'Body Wrap',label:'BODY SCRUB',prices:{90:1400,120:1800},badge:'new'},
+  // Packages
+  {id:'pk1',cat:'package',name:"Couple's Retreat Package",label:'PACKAGE',prices:{180:3200},popular:true},
+  {id:'pk2',cat:'package',name:'Full Day Bliss Package',label:'PACKAGE',prices:{210:2500}},
+  {id:'pk3',cat:'package',name:'Ultimate Detox Package',label:'PACKAGE',prices:{210:2200}},
+];
+
+// ===== STATE =====
+let selectedSvc = null;
+let selectedDur = null;
+let selectedDate = null;
+let selectedTime = null;
+let guestCount = 1;
+let couponDiscount = 0;
+let couponCode = '';
+let paymentMethod = 'promptpay';
+const TODAY_DISCOUNT = 10; // 10% today
+
+// ===== COUNTDOWN TIMER =====
+function updateTimer() {
+  const now = new Date();
+  const midnight = new Date();
+  midnight.setHours(23,59,59,999);
+  const diff = midnight - now;
+  const h = Math.floor(diff/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('t-hrs').textContent = String(h).padStart(2,'0');
+  document.getElementById('t-min').textContent = String(m).padStart(2,'0');
+  document.getElementById('t-sec').textContent = String(s).padStart(2,'0');
+}
+updateTimer();
+setInterval(updateTimer, 1000);
+
+// ===== RENDER SERVICES =====
+function renderServices(cat='all') {
+  const list = document.getElementById('servicesList');
+  const filtered = cat==='all' ? SERVICES : SERVICES.filter(s=>s.cat===cat);
+  list.innerHTML = filtered.map(svc => {
+    const isSelected = selectedSvc && selectedSvc.id === svc.id;
+    const durs = Object.keys(svc.prices).sort((a,b)=>a-b);
+    const badges = (svc.popular?'<span class="badge-popular">Popular</span>':'') + (svc.badge==='new'?'<span class="badge-new">New</span>':'');
+    const durBtns = durs.map(d => {
+      const isSel = isSelected && selectedDur == d;
+      return `<button class="svc-dur-btn${isSel?' selected':''}" onclick="selectDuration(event,'${svc.id}',${d})">
+        ${d}min <span class="svc-dur-price">${svc.prices[d].toLocaleString()}</span>
+      </button>`;
+    }).join('');
+    return `<div class="svc-item${isSelected?' selected':''}" id="svc-${svc.id}" onclick="selectService('${svc.id}')">
+      <div class="svc-cat-label">${svc.label}</div>
+      <div class="svc-name">${svc.name}${badges}</div>
+      <div class="svc-durations">${durBtns}</div>
+    </div>`;
+  }).join('');
+}
+
+// ===== SELECT SERVICE =====
+function selectService(id) {
+  const svc = SERVICES.find(s=>s.id===id);
+  if(!svc) return;
+  selectedSvc = svc;
+  selectedDur = null;
+  // Auto-select first duration
+  const firstDur = Object.keys(svc.prices).sort((a,b)=>a-b)[0];
+  selectedDur = parseInt(firstDur);
+  renderServices(document.querySelector('.scat-btn.active').dataset.cat);
+  updateSummary();
+  updateStep(1,'done'); updateStep(2,'active');
+}
+function selectDuration(e, id, dur) {
+  e.stopPropagation();
+  const svc = SERVICES.find(s=>s.id===id);
+  if(!svc) return;
+  selectedSvc = svc;
+  selectedDur = dur;
+  renderServices(document.querySelector('.scat-btn.active').dataset.cat);
+  updateSummary();
+  updateStep(1,'done'); updateStep(2,'active');
+}
+
+// Category filter
+document.getElementById('catBtns').addEventListener('click', e => {
+  if(!e.target.classList.contains('scat-btn')) return;
+  document.querySelectorAll('.scat-btn').forEach(b=>b.classList.remove('active'));
+  e.target.classList.add('active');
+  renderServices(e.target.dataset.cat);
+});
+
+// Init
+renderServices();
+
+// ===== CALENDAR =====
+let calDate = new Date();
+calDate.setDate(1);
+
+function renderCalendar() {
+  const today = new Date();
+  const year = calDate.getFullYear();
+  const month = calDate.getMonth();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  document.getElementById('calMonthLabel').textContent = months[month]+' '+year;
+  const firstDay = new Date(year,month,1).getDay();
+  const daysInMonth = new Date(year,month+1,0).getDate();
+  const grid = document.getElementById('calGrid');
+  const days = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+  grid.innerHTML = days.map(d=>`<div class="cal-day-name">${d}</div>`).join('');
+  for(let i=0;i<firstDay;i++) grid.innerHTML+=`<div class="cal-day empty"></div>`;
+  for(let d=1;d<=daysInMonth;d++){
+    const thisDate = new Date(year,month,d);
+    const isPast = thisDate < new Date(today.getFullYear(),today.getMonth(),today.getDate());
+    const isToday = d===today.getDate() && month===today.getMonth() && year===today.getFullYear();
+    const isSel = selectedDate && selectedDate.getDate()===d && selectedDate.getMonth()===month && selectedDate.getFullYear()===year;
+    grid.innerHTML+=`<div class="cal-day${isPast?' disabled':''}${isToday?' today':''}${isSel?' selected':''}" onclick="${isPast?'':'selectDay('+d+','+month+','+year+')'}">
+      ${d}
+    </div>`;
+  }
+}
+
+function selectDay(d,m,y) {
+  selectedDate = new Date(y,m,d);
+  selectedTime = null;
+  renderCalendar();
+  renderTimeSlots();
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('timeSlotDate').textContent=`— ${d} ${months[m]} ${y}`;
+  updateSummary();
+}
+
+document.getElementById('calPrev').onclick = ()=>{ calDate.setMonth(calDate.getMonth()-1); renderCalendar(); };
+document.getElementById('calNext').onclick = ()=>{ calDate.setMonth(calDate.getMonth()+1); renderCalendar(); };
+renderCalendar();
+
+// ===== TIME SLOTS =====
+const BOOKED_SLOTS = ['10:00','14:30','16:00']; // dummy booked slots
+const ALL_SLOTS = ['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00'];
+
+function renderTimeSlots() {
+  const container = document.getElementById('timeSlots');
+  container.innerHTML = ALL_SLOTS.map(t => {
+    const isBooked = BOOKED_SLOTS.includes(t);
+    const isSel = selectedTime === t;
+    return `<button class="time-slot${isBooked?' booked':''}${isSel?' selected':''}" onclick="${isBooked?'':'selectTime(\''+t+'\')'}">${isBooked?'<s>'+t+'</s>':t}</button>`;
+  }).join('');
+}
+renderTimeSlots();
+
+function selectTime(t) {
+  selectedTime = t;
+  renderTimeSlots();
+  updateSummary();
+  updateStep(2,'done'); updateStep(3,'active');
+}
+
+// ===== GUESTS =====
+function changeGuests(delta) {
+  guestCount = Math.max(1, Math.min(8, guestCount+delta));
+  document.getElementById('guestCount').textContent = guestCount;
+  updateSummary();
+}
+
+// ===== COUPON =====
+const COUPONS = {
+  'WELCOME20': {pct:20, label:'First Visit 20% OFF'},
+  'TODAY10':   {pct:10, label:'Today Special 10% OFF'},
+  'COUPLE15':  {pct:15, label:'Couples 15% OFF'},
+  'VIP30':     {pct:30, label:'VIP Member 30% OFF'},
+};
+function applyCoupon() {
+  const code = document.getElementById('couponInput').value.trim().toUpperCase();
+  const msg = document.getElementById('couponMsg');
+  if(!code){ msg.className='coupon-msg error'; msg.textContent='Please enter a coupon code.'; return; }
+  if(COUPONS[code]){
+    couponCode = code;
+    couponDiscount = COUPONS[code].pct;
+    msg.className='coupon-msg success'; msg.textContent=`✓ ${COUPONS[code].label} applied!`;
+  } else {
+    couponCode=''; couponDiscount=0;
+    msg.className='coupon-msg error'; msg.textContent='Invalid coupon code. Try WELCOME20';
+  }
+  updateSummary();
+}
+
+// ===== PAYMENT =====
+function selectPayment(method, el) {
+  paymentMethod = method;
+  document.querySelectorAll('.pay-tab').forEach(t=>t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.qr-area').forEach(q=>q.classList.remove('active'));
+  document.getElementById('qr-'+method).classList.add('active');
+}
+
+// ===== SUMMARY =====
+function updateSummary() {
+  const content = document.getElementById('summaryContent');
+  const totalLines = document.getElementById('totalLines');
+  const totalEl = document.getElementById('totalAmount');
+  const ppAmt = document.getElementById('pp-amount');
+  const kbAmt = document.getElementById('kbank-amount');
+  const kbQrAmt = document.getElementById('kbank-qr-amount');
+  const savingsBox = document.getElementById('savingsBox');
+  const savingsAmt = document.getElementById('savingsAmt');
+
+  if(!selectedSvc) {
+    content.innerHTML='<p class="summary-empty">Select a service to get started</p>';
+    totalLines.innerHTML=''; totalEl.textContent='—';
+    ppAmt.textContent='฿ —'; kbAmt.textContent='฿ —'; kbQrAmt.textContent='฿ —';
+    savingsBox.style.display='none';
+    return;
+  }
+
+  const basePrice = selectedDur && selectedSvc.prices[selectedDur] ? selectedSvc.prices[selectedDur] : Object.values(selectedSvc.prices)[0];
+  const total = basePrice * guestCount;
+  const todayOff = Math.round(total * TODAY_DISCOUNT / 100);
+  let afterToday = total - todayOff;
+  let couponOff = couponCode ? Math.round(afterToday * couponDiscount / 100) : 0;
+  // Max total discount (don't stack beyond 40%)
+  const maxDiscount = Math.round(total * 0.4);
+  if(todayOff + couponOff > maxDiscount) couponOff = maxDiscount - todayOff;
+  const finalTotal = afterToday - couponOff;
+  const totalSaved = total - finalTotal;
+
+  content.innerHTML = `
+    <div class="summary-line"><span class="summary-line-label">Treatment</span><span class="summary-line-val">${selectedSvc.name}</span></div>
+    <div class="summary-line"><span class="summary-line-label">Duration</span><span class="summary-line-val">${selectedDur} minutes</span></div>
+    <div class="summary-line"><span class="summary-line-label">Date</span><span class="summary-line-val">${selectedDate ? selectedDate.toDateString() : '—'}</span></div>
+    <div class="summary-line"><span class="summary-line-label">Time</span><span class="summary-line-val">${selectedTime||'—'}</span></div>
+    <div class="summary-line"><span class="summary-line-label">Guests</span><span class="summary-line-val">${guestCount} person${guestCount>1?'s':''}</span></div>
+  `;
+
+  totalLines.innerHTML = `
+    <div class="summary-line"><span class="summary-line-label">Base Price</span><span class="summary-line-val">${total.toLocaleString()} THB</span></div>
+    <div class="summary-line"><span class="summary-line-label" style="color:var(--green)">Today's 10% OFF</span><span class="summary-line-val" style="color:var(--green)">− ${todayOff.toLocaleString()} THB</span></div>
+    ${couponOff>0?`<div class="summary-line"><span class="summary-line-label" style="color:var(--green)">Coupon (${couponCode})</span><span class="summary-line-val" style="color:var(--green)">− ${couponOff.toLocaleString()} THB</span></div>`:''}
+  `;
+
+  totalEl.textContent = finalTotal.toLocaleString()+' THB';
+  const amtStr = '฿ '+finalTotal.toLocaleString();
+  ppAmt.textContent = amtStr;
+  kbAmt.textContent = amtStr;
+  kbQrAmt.textContent = amtStr;
+
+  if(totalSaved > 0){
+    savingsBox.style.display='flex';
+    savingsAmt.textContent = totalSaved.toLocaleString();
+  } else {
+    savingsBox.style.display='none';
+  }
+
+  updateStep(3, selectedDate && selectedTime ? 'done' : 'active');
+  updateStep(4, 'active');
+}
+
+// ===== STEPS =====
+function updateStep(n, state) {
+  const el = document.getElementById('step'+n);
+  el.classList.remove('active','done');
+  el.classList.add(state);
+}
+
+// ===== VALIDATION & SUBMIT =====
+function submitBooking() {
+  const fname = document.getElementById('f-fname').value.trim();
+  const lname = document.getElementById('f-lname').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+  let valid = true;
+
+  // Clear errors
+  document.querySelectorAll('.field-error').forEach(e=>e.textContent='');
+  document.querySelectorAll('.form-field input,.form-field select').forEach(f=>f.classList.remove('error'));
+
+  if(!selectedSvc){alert('Please select a treatment first.'); return;}
+  if(!selectedDate){alert('Please select a date.'); return;}
+  if(!selectedTime){alert('Please select a time slot.'); return;}
+
+  if(!fname){ document.getElementById('f-fname').classList.add('error'); document.getElementById('err-fname').textContent='Required'; valid=false; }
+  if(!lname){ document.getElementById('f-lname').classList.add('error'); document.getElementById('err-lname').textContent='Required'; valid=false; }
+  if(!phone){ document.getElementById('f-phone').classList.add('error'); document.getElementById('err-phone').textContent='Required'; valid=false; }
+
+  if(!valid) { document.getElementById('f-fname').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+
+  // Generate reference
+  const ref = 'CAS-' + String(Math.floor(100000+Math.random()*900000));
+  document.getElementById('successRef').textContent = 'REF: #'+ref;
+
+  // Send WhatsApp
+  const basePrice = selectedSvc.prices[selectedDur]||Object.values(selectedSvc.prices)[0];
+  const total = basePrice * guestCount;
+  const discount = Math.round(total*(TODAY_DISCOUNT/100)) + (couponCode?Math.round(total*couponDiscount/100):0);
+  const final = total - discount;
+  const dateStr = selectedDate ? selectedDate.toLocaleDateString('en-GB',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) : 'N/A';
+  const msg = `Hello Crystal Aura Spa!\n\nI would like to confirm my booking.\n\n`+
+    `----------------------------------\n`+
+    `Booking Ref : #${ref}\n`+
+    `----------------------------------\n`+
+    `Name        : ${fname} ${lname}\n`+
+    `Phone       : ${phone}\n`+
+    `----------------------------------\n`+
+    `Service     : ${selectedSvc.name}\n`+
+    `Duration    : ${selectedDur} minutes\n`+
+    `Date        : ${dateStr}\n`+
+    `Time        : ${selectedTime}\n`+
+    `Guests      : ${guestCount} person${guestCount>1?'s':''}\n`+
+    `----------------------------------\n`+
+    `Payment     : ${paymentMethod==='kbank'?'KBank Transfer':'PromptPay'}\n`+
+    `Amount      : ${final.toLocaleString()} THB\n`+
+    (couponCode?`Coupon      : ${couponCode}\n`:'')+
+    `----------------------------------\n\n`+
+    `Please confirm my booking. Thank you!`;
+  window.open('https://wa.me/66959932861?text='+encodeURIComponent(msg),'_blank');
+
+  // Show modal
+  document.getElementById('successModal').classList.add('open');
+
+  // Mark all steps done
+  [1,2,3,4].forEach(n => updateStep(n,'done'));
+}
+
+// Close modal on bg click
+document.getElementById('successModal').addEventListener('click', function(e){
+  if(e.target===this) this.classList.remove('open');
+});
+</script>
+</body>
+</html>
