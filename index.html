@@ -1507,10 +1507,24 @@ window.addEventListener('scroll', () => {
 const hamburger = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
 const mobileClose = document.getElementById('mobileClose');
-hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+hamburger.addEventListener("click", () => { mobileMenu.classList.add("open"); hamburger.style.display = "none"; });
+mobileClose.addEventListener("click", () => { mobileMenu.classList.remove("open"); hamburger.style.display = "flex"; });
 document.querySelectorAll('.mobile-link').forEach(link => {
-  link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  link.addEventListener('click', function(e) {
+    const href = this.getAttribute('href');
+    mobileMenu.classList.remove('open');
+    hamburger.style.display = 'flex';
+    if (href.startsWith('#')) {
+      e.preventDefault();
+      setTimeout(() => {
+        const target = document.querySelector(href);
+        if (target) {
+          const rect = target.getBoundingClientRect();
+          window.scrollTo({ top: window.scrollY + rect.top - 80, behavior: 'smooth' });
+        }
+      }, 350);
+    }
+  });
 });
 
 // ===== HERO SLIDER =====
